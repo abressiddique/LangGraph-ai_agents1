@@ -2,15 +2,14 @@ from dotenv import load_dotenv
 from typing import Annotated, Literal
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
-from langchain.chat_models import init_chat_model
+from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 from typing_extensions import TypedDict
 
 load_dotenv()
 
-llm = init_chat_model(
-    "anthropic:claude-3-5-sonnet-latest"
-)
+# Use OpenAI GPT-4.1-mini instead of Anthropic
+llm = ChatOpenAI(model="gpt-4.1-mini", temperature=0)
 
 
 class MessageClassifier(BaseModel):
